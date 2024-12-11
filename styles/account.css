@@ -1,3 +1,9 @@
+.account-content {
+  padding: 0 20px 95px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .profile {
   display: flex;
   flex-direction: row;
@@ -18,36 +24,17 @@
 
 .username {
   font-size: 2em;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
 }
-
-.experience-level {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.experience-name {
-  font-size: 16px;
-}
-
-/* .level-circle {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: var(--background-color);
-  border: 10px solid var(--primary-color);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 5em;
-  margin-bottom: 10px;
-  margin-top: 50px;
-} */
 
 .level-circle {
   position: relative;
   width: 250px;
   height: 250px;
   display: inline-flex;
+  filter: drop-shadow(0 0 15px #b5abff69);
 }
 
 .level-circle svg {
@@ -62,4 +49,89 @@
   font-size: 7em;
   color: #fff;
   font-weight: bold;
+}
+
+.experience-level {
+  text-align: center;
+  margin: 20px;
+  border: 5px solid var(--primary-color);
+  padding-top: 20px;
+  border-radius: 10px;
+  background-color: #9385fa27;
+}
+
+.experience-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.experience-info {
+  display: inline-flex;
+  gap: 4px;
+  font-size: 1.2em;
+  margin-top: -10px;
+}
+
+#xp-counter {
+  color: rgb(168, 139, 255);
+}
+
+.trophies {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.trophy {
+  font-size: 32px;
+  margin: 5px;
+}
+
+.bronze {
+  color: #fda450;
+}
+.silver {
+  color: #c0c0c0;
+}
+.gold {
+  color: #ffd700;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.rewards-container {
+  overflow-x: scroll;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.divider {
+  border: 0;
+  height: 10px;
+  border-radius: 5px;
+  background: #e6e6e6;
+  margin: 20px 0;
+  width: 500px;
+}
+
+.rewards {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.trophy {
+  font-size: 40px;
+  margin: 5px;
+}
+
+.obtained {
+  filter: grayscale(100%);
 }

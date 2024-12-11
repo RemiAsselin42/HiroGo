@@ -30,7 +30,14 @@
       <!-- Section de profil -->
       <div class="profile">
         <i class="fas fa-user-circle icone-user-profile"></i>
-        <p class="username">Julien</p>
+        <span class="user-info">
+          <p class="username">Julien</p>
+          <div class="trophies">
+            <i class="fas fa-medal trophy bronze" title="Médaille 1"></i>
+            <i class="fas fa-trophy trophy silver" title="Trophée 1"></i>
+            <i class="fas fa-award trophy gold" title="Médaille 2"></i>
+          </div>
+        </span>
       </div>
 
       <!-- Niveau d'expérience -->
@@ -70,11 +77,27 @@
               stroke-linecap="round"
             />
           </svg>
-          <div class="progress-text">5</div>
+          <div class="progress-text">84</div>
         </div>
         <p class="experience-name">Niveau d'expérience</p>
-        <p id="xp-counter">1000xp</p>
+        <span class="experience-info"
+          ><p id="xp-counter">1000xp</p>
+          <p>jusqu'au niveau suivant.</p></span
+        >
       </div>
+      <!-- Ajout d'une barre de progression horizontale pour afficher les récompences obtenues et à obtenir -->
+      <div class="rewards-container">
+        <div class="rewards">
+          <i class="fas fa-medal trophy bronze obtained" title="Médaille 1"></i>
+          <i class="fas fa-trophy trophy silver obtained" title="Trophée 1"></i>
+          <i class="fas fa-award trophy gold" title="Médaille 2"></i>
+          <i class="fas fa-medal trophy bronze" title="Médaille 3"></i>
+          <i class="fas fa-trophy trophy silver" title="Trophée 2"></i>
+          <i class="fas fa-award trophy gold" title="Médaille 4"></i>
+          <!-- Ajoutez d'autres icônes de médailles et trophées ici -->
+        </div>
+      </div>
+      <hr class="divider" />
     </main>
     <footer>
       <nav>
@@ -89,5 +112,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="../script/level-animation.js"></script>
+    <script src="../script/rewards-scroll.js"></script>
   </body>
 </html>

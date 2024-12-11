@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const xpCounter = document.getElementById('xp-counter');
     const startXP = 1000;
     const endXP = 325;
-    const xpDuration = 2000; // 1 second
+    const xpDuration = 1400; // 1 second
 
     function animateXP() {
         let start = null;
