@@ -62,7 +62,6 @@
 //   });
 // });
 $(document).ready(function () {
-
   const routeSelection = document.getElementById('routeSelection');
   let isDragging = false; // Indique si un drag est en cours
   let startY = 0; // Position de départ du doigt
@@ -104,9 +103,7 @@ $(document).ready(function () {
 
     const touchY = e.touches[0].clientY;
     const deltaY = startY - touchY;
-    let newHeight = Math.min(565, Math.max(50, startHeight + deltaY));
-
-    routeSelection.style.height = `${newHeight}px`;
+    let newHeight = startHeight + deltaY;
 
     // Ajuster les classes selon la hauteur
     resetClasses();
@@ -115,6 +112,8 @@ $(document).ready(function () {
     } else if (newHeight >= 160) {
       routeSelection.classList.add('expanded');
     }
+
+    routeSelection.style.height = `${newHeight}px`;
   });
 
   routeSelection.addEventListener('touchend', () => {
@@ -136,6 +135,22 @@ $(document).ready(function () {
       routeSelection.style.height = '565px';
     }
   });
+
+  // Fonction pour "clipper" la hauteur à des valeurs spécifiques
+  const clipHeight = () => {
+    const currentHeight = routeSelection.offsetHeight;
+
+    if (currentHeight < 160) {
+      routeSelection.style.height = '50px';
+    } else if (currentHeight < 420) {
+      routeSelection.style.height = '270px';
+    } else {
+      routeSelection.style.height = '565px';
+    }
+  };
+
+  // Ajouter un événement pour "clipper" la hauteur après le drag
+  routeSelection.addEventListener('touchend', clipHeight);
 });
 
 $(document).ready(function () {
