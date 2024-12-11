@@ -32,12 +32,12 @@ $(document).ready(function () {
 
     } else if (direction === 'down') {
 
-      if (currentHeight < maxHeight && currentHeight > mediumHeight) {
+      if (currentHeight <= maxHeight && currentHeight > mediumHeight) {
         resetClasses();
         routeSelection.classList.add('expanded');
         routeSelection.style.height = `${mediumHeight}px`;
 
-      } else if (currentHeight > minHeight && currentHeight < mediumHeight) {
+      } else if (currentHeight > minHeight && currentHeight <= mediumHeight) {
         resetClasses();
         routeSelection.style.height = `${minHeight}px`;
       }
@@ -81,6 +81,8 @@ $(document).ready(function () {
       resetClasses();
       routeSelection.classList.add('expanded');
       routeSelection.style.height = `${mediumHeight}px`;
+    } else if (currentHeight == maxHeight) {
+      return;
     }
   });
 
