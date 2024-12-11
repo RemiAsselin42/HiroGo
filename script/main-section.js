@@ -58,24 +58,6 @@ $(document).ready(function () {
     startHeight = routeSelection.offsetHeight;
   });
 
-  routeSelection.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-
-    const touchY = e.touches[0].clientY;
-    const deltaY = startY - touchY;
-    let newHeight = startHeight + deltaY;
-
-    // Ajuster les classes selon la hauteur
-    resetClasses();
-    if (newHeight >= 420) {
-      routeSelection.classList.add('full');
-    } else if (newHeight >= 160) {
-      routeSelection.classList.add('expanded');
-    }
-
-    routeSelection.style.height = `${newHeight}px`;
-  });
-
   routeSelection.addEventListener('touchend', (e) => {
     isDragging = false;
 
