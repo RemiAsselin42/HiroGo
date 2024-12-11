@@ -3,6 +3,8 @@ $(document).ready(function () {
   let isDragging = false; // Indique si un drag est en cours
   let startY = 0; // Position de départ du doigt
   let startHeight = 0; // Hauteur initiale de la div
+  let minHeight = '75'; // Hauteur minimale de la div
+  let mediumHeight = '310'; // Hauteur moyenne de la div
   let maxHeight = 'calc(100dvh - 138px)'; // Hauteur maximale de la div
 
   // Fonction pour réinitialiser les classes
@@ -16,40 +18,31 @@ $(document).ready(function () {
     const currentHeight = routeSelection.offsetHeight;
 
     if (direction === 'up') {
-      if (currentHeight < 160) {
+
+      if (currentHeight > minHeight && currentHeight < mediumHeight) {
         resetClasses();
-        routeSelection.style.height = '310px';
-      } else if (currentHeight < 420) {
+        routeSelection.classList.add('expanded');
+        routeSelection.style.height = `${mediumHeight}px`;
+
+      } else if (currentHeight > mediumHeight && currentHeight < maxHeight) {
         resetClasses();
         routeSelection.classList.add('full');
         routeSelection.style.height = maxHeight;
       }
+
     } else if (direction === 'down') {
-      if (currentHeight > 420) {
+
+      if (currentHeight < maxHeight && currentHeight > mediumHeight) {
         resetClasses();
         routeSelection.classList.add('expanded');
-        routeSelection.style.height = '310px';
+        routeSelection.style.height = `${mediumHeight}px`;
+
+      } else if (currentHeight > minHeight && currentHeight < mediumHeight) {
+        resetClasses();
+        routeSelection.style.height = `${minHeight}px`;
       }
     }
   };
-
-  // Gestion du "tap" pour basculer entre 75px et 310px
-  routeSelection.addEventListener('click', () => {
-    if (isDragging) return;
-
-    const currentHeight = routeSelection.offsetHeight;
-
-    if (currentHeight === 75) {
-      resetClasses();
-      routeSelection.classList.add('expanded');
-      routeSelection.style.height = '310px';
-    }
-  });
-
-  document.querySelector('#map').addEventListener('click', function () {
-    resetClasses();
-    routeSelection.style.height = '75px';
-  });
 
   // Gestion du "drag" pour ajuster la hauteur
   routeSelection.addEventListener('touchstart', (e) => {
@@ -58,6 +51,17 @@ $(document).ready(function () {
     startHeight = routeSelection.offsetHeight;
   });
 
+  routeSelection.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    resetClasses();
+    const touchY = e.touches[0].clientY;
+    const deltaY = startY - touchY;
+    let newHeight = startHeight + deltaY;
+
+    routeSelection.style.height = `${newHeight}px`;
+  });
+
+  // Assurez-vous que la hauteur est toujours ajustée après un drag
   routeSelection.addEventListener('touchend', (e) => {
     isDragging = false;
 
@@ -66,6 +70,23 @@ $(document).ready(function () {
     const direction = deltaY > 0 ? 'up' : 'down';
 
     clipHeight(direction);
+  });
+
+  // Gestion du "tap" pour basculer entre 75px et 310px
+  routeSelection.addEventListener('click', () => {
+    if (isDragging) return;
+    const currentHeight = routeSelection.offsetHeight;
+
+    if (currentHeight == minHeight) {
+      resetClasses();
+      routeSelection.classList.add('expanded');
+      routeSelection.style.height = `${mediumHeight}px`;
+    }
+  });
+
+  document.querySelector('#map').addEventListener('click', function () {
+    resetClasses();
+    routeSelection.style.height = `${minHeight}px`;
   });
 });
 
