@@ -1,7 +1,6 @@
 import CONFIG from '../config.js';
 const mapboxApiKey = CONFIG.MAPBOX_API_KEY;
 
-apiKey = MAPBOX_KEY;
 mapboxgl.accessToken = `${mapboxApiKey}`;
 var map = new mapboxgl.Map({
     container: "map",
