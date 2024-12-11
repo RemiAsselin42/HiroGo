@@ -40,7 +40,8 @@
 }
 
 .forecast-content p {
-  margin: 0;
+  margin-top: 6px;
+  margin-bottom: -6px;
 }
 
 .forecast-time {
@@ -65,6 +66,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px 0 0 5px;
+  outline: none;
 }
 
 .city-input button {

@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     const date = new Date(day.dt * 1000);
                     const dayLetter = getDayLetter(date);
                     const icon = getWeatherIcon(day.weather[0].main);
+                    const windDirection = day.wind.deg;
+                    const temperature = day.main.temp.toFixed(1); // Arrondir à une décimale
+                    const windSpeed = (day.wind.speed * 3.6).toFixed(1); // Convertir en km/h et arrondir à une décimale
                     const forecastDay = document.createElement('div');
                     forecastDay.className = 'forecast-day';
                     forecastDay.innerHTML = `
@@ -25,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="forecast-day-div">
                             <i class="fas ${icon}"></i>
                             <div class="forecast-content">
-                                <p>${day.main.temp}°C</p>
-                                <p>${day.wind.speed} m/s</p>
-                                <span class="forecast-time">${date.toLocaleDateString()}</span>
+                                <p>${temperature}°C</p>
+                                <p>${windSpeed} km/h</p>
+                                <i class="fa-solid fa-location-arrow wind-direction" style="transform: rotate(${windDirection}deg);"></i>
                             </div>
                         </div>
                     `;
