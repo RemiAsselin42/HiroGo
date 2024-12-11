@@ -1,5 +1,5 @@
 .defis-content {
-  padding: 0 20px 95px 20px;
+  padding: 0 20px 60px 20px;
   overflow-y: auto;
 }
 
@@ -13,13 +13,39 @@
 }
 
 .challenge {
-  display: flex;
-  align-items: center;
-  background-color: var(--secondary-color);
+  border: 2px solid;
+  border-radius: 10px;
   padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.challenge.easy {
+  border-color: green;
+}
+
+.challenge.medium {
+  border-color: orange;
+}
+
+.challenge.hard {
+  border-color: red;
+}
+
+.challenge-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.difficulty {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.countdown {
+  font-size: 14px;
+  color: #c9c9c9;
+  margin-top: 10px;
 }
 
 .challenge.completed {
@@ -53,4 +79,8 @@
 
 .complete-btn:hover {
   background-color: var(--secondary-color);
+}
+
+.defis-title {
+  display: flex;
 }

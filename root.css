@@ -5,6 +5,7 @@
 @import "styles/activities.css";
 @import "styles/defis.css";
 @import "styles/account.css";
+@import "styles/amis.css";
 
 :root {
   --primary-color: #6050dc;

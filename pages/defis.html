@@ -29,25 +29,45 @@
     <main class="defis-content">
       <section class="challenges">
         <h2>Défis Quotidiens</h2>
-        <div class="challenge" data-exp="50">
+
+        <!-- Défi Facile -->
+        <div class="challenge easy" data-exp="100">
           <div class="challenge-content">
-            <h3>Parcourir 10 km</h3>
-            <p>Gagnez 50 XP</p>
-            <button class="complete-btn">Terminer</button>
+            <span class="defis-title">
+              <i class="fas fa-walking challenge-icon"></i>
+              <h3>Parcourir 5 km</h3>
+            </span>
+            <p>Gagnez 100 XP</p>
+            <p class="difficulty">Facile</p>
+            <p class="countdown" id="countdown-easy"></p>
           </div>
         </div>
-        <div class="challenge" data-exp="30">
+
+        <!-- Défi Moyen -->
+        <div class="challenge medium" data-exp="250">
           <div class="challenge-content">
-            <h3>Faire 30 minutes de vélo</h3>
-            <p>Gagnez 30 XP</p>
-            <button class="complete-btn">Terminer</button>
+            <span class="defis-title">
+              <i class="fas fa-bicycle challenge-icon"></i>
+              <h3>Faire 1 heure de vélo</h3>
+            </span>
+
+            <p>Gagnez 250 XP</p>
+            <p class="difficulty">Moyen</p>
+            <p class="countdown" id="countdown-medium"></p>
           </div>
         </div>
-        <div class="challenge" data-exp="20">
+
+        <!-- Défi Difficile -->
+        <div class="challenge hard" data-exp="500">
           <div class="challenge-content">
-            <h3>Monter 5 côtes</h3>
-            <p>Gagnez 20 XP</p>
-            <button class="complete-btn">Terminer</button>
+            <span class="defis-title">
+              <i class="fas fa-mountain challenge-icon"></i>
+              <h3>Monter 10 côtes</h3>
+            </span>
+
+            <p>Gagnez 500 XP</p>
+            <p class="difficulty">Difficile</p>
+            <p class="countdown" id="countdown-hard"></p>
           </div>
         </div>
       </section>
@@ -65,13 +85,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="../script/map.js"></script>
-    <script>
-      $(document).ready(function () {
-        $(".select2").select2({
-          dropdownParent: $(".route-selection"),
-          minimumResultsForSearch: Infinity, // Désactive la zone de recherche
-        });
-      });
-    </script>
+    <script src="../script/timer-defis.js"></script>
   </body>
 </html>
