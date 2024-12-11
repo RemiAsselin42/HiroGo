@@ -3,6 +3,7 @@ $(document).ready(function () {
   let isDragging = false; // Indique si un drag est en cours
   let startY = 0; // Position de départ du doigt
   let startHeight = 0; // Hauteur initiale de la div
+  let maxHeight = 'calc(100dvh - 138px)'; // Hauteur maximale de la div
 
   // Fonction pour réinitialiser les classes
   const resetClasses = () => {
@@ -21,7 +22,7 @@ $(document).ready(function () {
       } else if (currentHeight < 420) {
         resetClasses();
         routeSelection.classList.add('full');
-        routeSelection.style.height = '565px';
+        routeSelection.style.height = maxHeight;
       }
     } else if (direction === 'down') {
       if (currentHeight > 420) {
