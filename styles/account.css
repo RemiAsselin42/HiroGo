@@ -117,7 +117,7 @@
   justify-content: space-between;
   flex-direction: row;
   gap: 10px;
-  width: 300%;
+  width: 200vh;
   margin-bottom: 10px;
 }
 
@@ -135,14 +135,14 @@
   margin: 20px;
   padding: 10px 10px;
   box-shadow: -10px 0 10px var(--dark-gray) inset;
+  width: calc(100% - 40px);
 }
 
 .progress-bar-fill {
   height: 10px;
   border-radius: 10px;
-  transition: width 0.5s ease;
   background: #e6e6e6;
-  width: 1270px;
+  width: 200vh;
 }
 
 @keyframes progressAnimation {
@@ -150,13 +150,13 @@
     width: 0;
   }
   to {
-    width: 500px;
+    width: 77vh;
   }
 }
 
 .progress-bar-fill-avance {
   background: #ffd700;
-  width: 0; /* Initial width set to 0 */
+  width: 0;
   height: 12px;
   position: relative;
   border-radius: 10px;
@@ -164,5 +164,5 @@
   left: -1px;
   z-index: 9;
   filter: drop-shadow(0 0 5px #ffd700);
-  animation: progressAnimation 2s forwards; /* Apply the animation */
+  animation: progressAnimation 2s forwards;
 }
