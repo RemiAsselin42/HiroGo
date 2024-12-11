@@ -1,0 +1,81 @@
+.meteo-content {
+  padding: 0 20px 95px 20px;
+  overflow-y: auto;
+}
+
+.weather-forecast {
+  margin-bottom: 20px;
+}
+
+.weather-forecast h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.forecast-day {
+  display: flex;
+  align-items: center;
+}
+
+.forecast-day-div {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.forecast-day i {
+  font-size: 2em;
+  margin-right: 10px;
+}
+
+.forecast-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.forecast-content p {
+  margin: 0;
+}
+
+.forecast-time {
+  font-size: 0.8em;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.day-letter {
+  font-size: 2em;
+  font-weight: bold;
+  min-width: 40px;
+}
+
+.city-input {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.city-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.city-input button {
+  padding: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.city-input button:hover {
+  background-color: var(--secondary-color);
+}

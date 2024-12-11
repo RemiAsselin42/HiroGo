@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Lexend:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Sans+Elbasan&display=swap");
+@import "styles/style.css";
+@import "styles/notifications.css";
+@import "styles/meteo.css";
+@import "styles/activities.css";
+@import "styles/defis.css";
+
+:root {
+  --primary-color: #6050dc;
+  --secondary-color: #4d3adc;
+  --tertiary-color: #3924dc;
+  --quaternary-color: #260edc;
+  --quinary-color: #1900dc;
+  --dark-gray: #333;
+  --font-family: "Lexend", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}

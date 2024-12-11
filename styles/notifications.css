@@ -1,0 +1,42 @@
+.notification-content {
+  padding: 0 20px 95px 20px;
+  overflow-y: auto;
+}
+
+.notification {
+  margin-bottom: 20px;
+}
+
+.notification h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.alert i {
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert p {
+  margin: 0;
+}
+
+.alert-time {
+  font-size: 0.8em;
+  color: #ccc;
+  margin-top: 5px;
+}

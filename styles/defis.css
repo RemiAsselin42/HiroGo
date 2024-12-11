@@ -1,0 +1,56 @@
+.defis-content {
+  padding: 0 20px 95px 20px;
+  overflow-y: auto;
+}
+
+.challenges {
+  margin-bottom: 20px;
+}
+
+.challenges h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.challenge {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-color);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.challenge.completed {
+  background-color: var(--primary-color);
+  text-decoration: line-through;
+}
+
+.challenge-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.challenge-content h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.challenge-content p {
+  margin: 5px 0;
+}
+
+.complete-btn {
+  padding: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.complete-btn:hover {
+  background-color: var(--secondary-color);
+}
