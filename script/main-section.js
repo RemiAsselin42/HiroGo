@@ -1,66 +1,3 @@
-// document.querySelector('.route-selection').addEventListener('click', function () {
-//   this.classList.add('expanded');
-// });
-
-// document.querySelector('#map').addEventListener('click', function () {
-//   document.querySelector('.route-selection').classList.remove('expanded');
-// });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   const routeSelection = document.querySelector('.route-selection');
-//   let startY, startHeight;
-
-//   routeSelection.addEventListener('click', function () {
-//     if (!this.classList.contains('full')) {
-//       this.classList.toggle('expanded');
-//       this.classList.remove('full');
-//     }
-//   });
-
-//   document.querySelector('#map').addEventListener('click', function () {
-//     routeSelection.classList.remove('expanded');
-//     routeSelection.classList.remove('full');
-//   });
-
-//   routeSelection.addEventListener('touchstart', function (e) {
-//     startY = e.touches[0].clientY;
-//     startHeight = routeSelection.offsetHeight;
-//     routeSelection.style.transition = 'none'; // Désactive la transition pendant le drag
-//   });
-
-//   routeSelection.addEventListener('touchmove', function (e) {
-//     const touchY = e.touches[0].clientY;
-//     const newHeight = startHeight + (startY - touchY);
-//     if (newHeight >= 50 && newHeight <= 565) { // Limite la hauteur entre 50px et 565px
-//       routeSelection.style.height = `${newHeight}px`;
-//     }
-//   });
-
-//   routeSelection.addEventListener('touchend', function () {
-//     routeSelection.style.transition = 'height 0.5s'; // Réactive la transition après le drag
-//     // Ajuste la hauteur finale à 50px, 270px ou 565px selon la position finale
-//     if (routeSelection.offsetHeight < 160) {
-//       routeSelection.classList.remove('expanded');
-//       routeSelection.classList.remove('full');
-//       routeSelection.style.height = '50px';
-//     } else if (routeSelection.offsetHeight < 420) {
-//       routeSelection.classList.add('expanded');
-//       routeSelection.classList.remove('full');
-//       routeSelection.style.height = '270px';
-//     } else {
-//       routeSelection.classList.remove('expanded');
-//       routeSelection.classList.add('full');
-//       routeSelection.style.height = '565px';
-//     }
-//   });
-
-//   $(document).ready(function () {
-//     $(".select2").select2({
-//       dropdownParent: $(".route-selection"),
-//       minimumResultsForSearch: Infinity,
-//     });
-//   });
-// });
 $(document).ready(function () {
   const routeSelection = document.getElementById('routeSelection');
   let isDragging = false; // Indique si un drag est en cours
@@ -71,6 +8,31 @@ $(document).ready(function () {
   const resetClasses = () => {
     routeSelection.classList.remove('expanded');
     routeSelection.classList.remove('full');
+  };
+
+  // Fonction pour "clipper" la hauteur à des valeurs spécifiques
+  const clipHeight = (direction) => {
+    const currentHeight = routeSelection.offsetHeight;
+
+    if (direction === 'up') {
+      if (currentHeight < 160) {
+        resetClasses();
+        routeSelection.style.height = '270px';
+      } else if (currentHeight < 420) {
+        resetClasses();
+        routeSelection.classList.add('full');
+        routeSelection.style.height = '565px';
+      }
+    } else if (direction === 'down') {
+      if (currentHeight > 420) {
+        resetClasses();
+        routeSelection.classList.add('expanded');
+        routeSelection.style.height = '270px';
+      } else if (currentHeight > 160) {
+        resetClasses();
+        routeSelection.style.height = '50px';
+      }
+    }
   };
 
   // Gestion du "tap" pour basculer entre 50px et 270px
@@ -116,41 +78,15 @@ $(document).ready(function () {
     routeSelection.style.height = `${newHeight}px`;
   });
 
-  routeSelection.addEventListener('touchend', () => {
+  routeSelection.addEventListener('touchend', (e) => {
     isDragging = false;
 
-    // Rapprocher la hauteur à l'un des paliers après un drag
-    const currentHeight = routeSelection.offsetHeight;
+    const touchY = e.changedTouches[0].clientY;
+    const deltaY = startY - touchY;
+    const direction = deltaY > 0 ? 'up' : 'down';
 
-    if (currentHeight < 160) {
-      resetClasses();
-      routeSelection.style.height = '50px';
-    } else if (currentHeight < 420) {
-      resetClasses();
-      routeSelection.classList.add('expanded');
-      routeSelection.style.height = '270px';
-    } else {
-      resetClasses();
-      routeSelection.classList.add('full');
-      routeSelection.style.height = '565px';
-    }
+    clipHeight(direction);
   });
-
-  // Fonction pour "clipper" la hauteur à des valeurs spécifiques
-  const clipHeight = () => {
-    const currentHeight = routeSelection.offsetHeight;
-
-    if (currentHeight < 160) {
-      routeSelection.style.height = '50px';
-    } else if (currentHeight < 420) {
-      routeSelection.style.height = '270px';
-    } else {
-      routeSelection.style.height = '565px';
-    }
-  };
-
-  // Ajouter un événement pour "clipper" la hauteur après le drag
-  routeSelection.addEventListener('touchend', clipHeight);
 });
 
 $(document).ready(function () {
