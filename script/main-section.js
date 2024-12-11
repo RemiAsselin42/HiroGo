@@ -17,7 +17,7 @@ $(document).ready(function () {
     if (direction === 'up') {
       if (currentHeight < 160) {
         resetClasses();
-        routeSelection.style.height = '270px';
+        routeSelection.style.height = '310px';
       } else if (currentHeight < 420) {
         resetClasses();
         routeSelection.classList.add('full');
@@ -27,27 +27,27 @@ $(document).ready(function () {
       if (currentHeight > 420) {
         resetClasses();
         routeSelection.classList.add('expanded');
-        routeSelection.style.height = '270px';
+        routeSelection.style.height = '310px';
       }
     }
   };
 
-  // Gestion du "tap" pour basculer entre 50px et 270px
+  // Gestion du "tap" pour basculer entre 75px et 310px
   routeSelection.addEventListener('click', () => {
     if (isDragging) return;
 
     const currentHeight = routeSelection.offsetHeight;
 
-    if (currentHeight === 50) {
+    if (currentHeight === 75) {
       resetClasses();
       routeSelection.classList.add('expanded');
-      routeSelection.style.height = '270px';
+      routeSelection.style.height = '310px';
     }
   });
 
   document.querySelector('#map').addEventListener('click', function () {
     resetClasses();
-    routeSelection.style.height = '50px';
+    routeSelection.style.height = '75px';
   });
 
   // Gestion du "drag" pour ajuster la hauteur
