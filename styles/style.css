@@ -53,12 +53,20 @@ main {
   height: calc(100dvh - 50px);
 }
 
+.logo {
+  width: 50px;
+  height: auto;
+  vertical-align: middle;
+}
+
 /* ================================================================= */
 
 .app-name {
-  margin-left: 10px;
   font-size: 1.8em;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .app-name a {
