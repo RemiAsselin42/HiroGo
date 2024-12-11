@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - rewardsContainer.offsetLeft;
-        const walk = (x - startX) * 3; //scroll-fast
+        const walk = (x - startX) * 3;
         rewardsContainer.scrollLeft = scrollLeft - walk;
     });
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     rewardsContainer.addEventListener('touchmove', (e) => {
         if (!isDown) return;
         const x = e.touches[0].pageX - rewardsContainer.offsetLeft;
-        const walk = (x - startX) * 3; //scroll-fast
+        const walk = (x - startX) * 3;
         rewardsContainer.scrollLeft = scrollLeft - walk;
     });
 });

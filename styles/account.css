@@ -84,7 +84,7 @@
 }
 
 .trophy {
-  font-size: 15px;
+  font-size: 25px;
   margin: 5px;
 }
 
@@ -121,7 +121,7 @@
   margin-bottom: 10px;
 }
 
-.trophy {
+.progress-trophy {
   font-size: 40px;
   margin: 5px;
 }

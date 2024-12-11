@@ -31,7 +31,7 @@
   text-align: center;
 }
 
-.trophies {
+.trophies-friends {
   display: none;
   flex-direction: row;
   justify-content: flex-start;
@@ -40,11 +40,11 @@
   margin-left: 10px;
 }
 
-.trophies .trophy {
+.trophies-friends .trophy {
   font-size: 1.5em;
 }
 
-.friend.expanded .trophies {
+.friend.expanded .trophies-friends {
   display: flex;
 }
 
