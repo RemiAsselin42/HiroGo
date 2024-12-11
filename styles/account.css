@@ -90,15 +90,15 @@
 
 .bronze {
   color: #fda450;
-  filter: drop-shadow(0 0 3px #fda450);
+  /* filter: drop-shadow(0 0 3px #fda450); */
 }
 .silver {
   color: #c0c0c0;
-  filter: drop-shadow(0 0 3px #c0c0c0);
+  /* filter: drop-shadow(0 0 3px #c0c0c0); */
 }
 .gold {
   color: #ffd700;
-  filter: drop-shadow(0 0 3px #ffd700);
+  /* filter: drop-shadow(0 0 3px #ffd700); */
 }
 
 .user-info {
