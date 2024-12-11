@@ -28,9 +28,6 @@ $(document).ready(function () {
         resetClasses();
         routeSelection.classList.add('expanded');
         routeSelection.style.height = '270px';
-      } else if (currentHeight > 160) {
-        resetClasses();
-        routeSelection.style.height = '50px';
       }
     }
   };
