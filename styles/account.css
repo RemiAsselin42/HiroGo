@@ -1,7 +1,6 @@
 .account-content {
   padding: 0 20px 95px 20px;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .profile {
@@ -75,7 +74,7 @@
 }
 
 #xp-counter {
-  color: rgb(168, 139, 255);
+  color: #ffae00;
 }
 
 .trophies {
@@ -85,18 +84,21 @@
 }
 
 .trophy {
-  font-size: 32px;
+  font-size: 15px;
   margin: 5px;
 }
 
 .bronze {
   color: #fda450;
+  filter: drop-shadow(0 0 3px #fda450);
 }
 .silver {
   color: #c0c0c0;
+  filter: drop-shadow(0 0 3px #c0c0c0);
 }
 .gold {
   color: #ffd700;
+  filter: drop-shadow(0 0 3px #ffd700);
 }
 
 .user-info {
@@ -105,26 +107,18 @@
 }
 
 .rewards-container {
-  overflow-x: scroll;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-  margin: 20px 0;
-  padding: 10px 0;
-  width: 100%;
-}
-
-.divider {
-  border: 0;
-  height: 10px;
-  border-radius: 5px;
-  background: #e6e6e6;
-  margin: 20px 0;
-  width: 500px;
+  width: 150%;
 }
 
 .rewards {
   display: inline-flex;
+  justify-content: space-between;
+  flex-direction: row;
   gap: 10px;
+  width: 300%;
+  margin-bottom: 10px;
 }
 
 .trophy {
@@ -132,6 +126,43 @@
   margin: 5px;
 }
 
-.obtained {
-  filter: grayscale(100%);
+.progress-bar {
+  width: calc(100% - 40x);
+  overflow: scroll;
+  background-color: #9385fa27;
+  border-radius: 10px;
+  border: 5px solid var(--primary-color);
+  margin: 20px;
+  padding: 10px 10px;
+  box-shadow: -10px 0 10px var(--dark-gray) inset;
+}
+
+.progress-bar-fill {
+  height: 10px;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  background: #e6e6e6;
+  width: 1270px;
+}
+
+@keyframes progressAnimation {
+  from {
+    width: 0;
+  }
+  to {
+    width: 500px;
+  }
+}
+
+.progress-bar-fill-avance {
+  background: #ffd700;
+  width: 0; /* Initial width set to 0 */
+  height: 12px;
+  position: relative;
+  border-radius: 10px;
+  top: -11px;
+  left: -1px;
+  z-index: 9;
+  filter: drop-shadow(0 0 5px #ffd700);
+  animation: progressAnimation 2s forwards; /* Apply the animation */
 }
