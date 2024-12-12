@@ -21,6 +21,7 @@ $(document).ready(function () {
   };
 
   document.querySelector('#map').addEventListener('click', function () {
+    if (routeSelection.classList.contains('expanded')) return; // Prevent action if in medium state
     resetClasses();
     routeSelection.style.height = `${minHeight}px`;
   });

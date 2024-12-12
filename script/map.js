@@ -20,7 +20,7 @@ const markersData = [
     { color: '#bf1209', coordinates: [4.414, 45.549], title: 'Problème de voirie', description: 'Route en travaux' },
     { color: '#3b2ca9', coordinates: [4.177, 45.883], title: 'Information utilisateur', description: 'Belle vue sur la Loire' },
     { color: '#ffd518', coordinates: [4.158, 45.909], title: 'Alerte attention', description: 'Passage piéton fréquenté' },
-    { color: '#ff4e00', coordinates: [4.185, 45.785], title: 'Lieu à voir', description: 'Parc naturel' },
+    { color: '#ff4e00', coordinates: [4.185, 45.785], title: 'Lieu à voir', description: 'Lac' },
     { color: '#bf1209', coordinates: [4.185, 46.048], title: 'Problème de voirie', description: 'Panneau de signalisation manquant' },
     { color: '#3b2ca9', coordinates: [4.220, 45.745], title: 'Information utilisateur', description: 'Café sympa pour une pause' },
     { color: '#bf1209', coordinates: [4.191, 45.539], title: 'Problème de voirie', description: 'Route glissante' },
