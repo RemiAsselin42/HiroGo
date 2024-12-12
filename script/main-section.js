@@ -4,7 +4,7 @@ let startY = 0; // Position de départ du doigt
 let startHeight = 0; // Hauteur initiale de la div
 const minHeight = 75; // Hauteur minimale de la div
 const mediumHeight = 310; // Hauteur moyenne de la div
-const dragThreshold = 10; // Distance minimale pour considérer un drag
+const dragThreshold = 5; // Distance minimale pour considérer un drag
 
 const headerHeight = document.querySelector('header').offsetHeight;
 const maxHeight = window.innerHeight - headerHeight;
