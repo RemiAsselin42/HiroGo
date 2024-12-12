@@ -140,14 +140,6 @@ main {
   text-align: center;
 }
 
-.route-selection.expanded {
-  height: 270px;
-}
-
-.route-selection.full {
-  height: 565px;
-}
-
 .route-selection label {
   display: block;
   margin: 10px 0;
