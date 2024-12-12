@@ -112,7 +112,7 @@ function autocomplete(input, cityNames) {
         if (this.id === "start") {
             list.style.bottom = `${this.offsetTop + this.offsetHeight + 58}px`; // Adjusted to display from bottom to top for start input
         } else if (this.id === "end") {
-            list.style.top = `${this.offsetTop + this.offsetHeight - 65}px`; // Adjusted to display from bottom to top for end input
+            list.style.bottom = `${this.offsetTop + this.offsetHeight - 95}px`; // Adjusted to display from bottom to top for end input
         }
         list.style.left = `${this.offsetLeft}px`;
         list.style.width = `${this.offsetWidth}px`;
