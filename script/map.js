@@ -22,7 +22,7 @@ const markersData = [
     { color: '#ffd518', coordinates: [4.158, 45.909], title: 'Alerte attention', description: 'Passage piéton fréquenté' },
     { color: '#ff4e00', coordinates: [4.185, 45.785], title: 'Lieu à voir', description: 'Parc naturel' },
     { color: '#bf1209', coordinates: [4.185, 46.048], title: 'Problème de voirie', description: 'Panneau de signalisation manquant' },
-    { color: '#3b2ca9', coordinates: [4.456, 45.854], title: 'Information utilisateur', description: 'Café sympa pour une pause' },
+    { color: '#3b2ca9', coordinates: [4.220, 45.745], title: 'Information utilisateur', description: 'Café sympa pour une pause' },
     { color: '#bf1209', coordinates: [4.191, 45.539], title: 'Problème de voirie', description: 'Route glissante' },
     { color: '#3b2ca9', coordinates: [4.525, 45.485], title: 'Information utilisateur', description: 'Chemin tranquille' },
     { color: '#ffd518', coordinates: [4.585, 45.514], title: 'Alerte attention', description: 'Travaux en cours' },
