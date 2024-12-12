@@ -8,7 +8,6 @@ const dragThreshold = 10; // Distance minimale pour considérer un drag
 
 const headerHeight = document.querySelector('header').offsetHeight;
 const maxHeight = window.innerHeight - headerHeight;
-// const maxHeight = 'calc(100dvh - 138px)'; // Hauteur maximale de la div
 
 let isMouseDragging = false; // Indique si un drag à la souris est en cours
 let startMouseY = 0; // Position initiale de la souris
@@ -21,45 +20,6 @@ $(document).ready(function () {
     routeSelection.classList.remove('full');
   };
 
-  // Fonction pour "clipper" la hauteur à des valeurs spécifiques
-  const clipHeight = (direction) => {
-    const currentHeight = routeSelection.offsetHeight;
-
-    if (direction === 'up') {
-      if (currentHeight < mediumHeight) {
-        resetClasses();
-        routeSelection.classList.add('expanded');
-        routeSelection.style.height = `${mediumHeight}px`;
-      } else if (currentHeight < maxHeight) {
-        resetClasses();
-        routeSelection.classList.add('full');
-        routeSelection.style.height = maxHeight;
-      }
-    } else if (direction === 'down') {
-      if (currentHeight > mediumHeight) {
-        resetClasses();
-        routeSelection.classList.add('expanded');
-        routeSelection.style.height = `${mediumHeight}px`;
-      } else if (currentHeight > minHeight) {
-        resetClasses();
-        routeSelection.style.height = `${minHeight}px`;
-      }
-    }
-  };
-
-  // Gestion du "tap" pour basculer entre 75px et 310px
-  routeSelection.addEventListener('click', () => {
-    if (isDragging) return;
-
-    const currentHeight = routeSelection.offsetHeight;
-
-    if (currentHeight === minHeight) {
-      resetClasses();
-      routeSelection.classList.add('expanded');
-      routeSelection.style.height = `${mediumHeight}px`;
-    }
-  });
-
   document.querySelector('#map').addEventListener('click', function () {
     resetClasses();
     routeSelection.style.height = `${minHeight}px`;
@@ -67,21 +27,13 @@ $(document).ready(function () {
 
   // Gestion du "drag" pour ajuster la hauteur
   routeSelection.addEventListener('touchstart', (e) => {
-    isDragging = true;
     startY = e.touches[0].clientY;
     startHeight = routeSelection.offsetHeight;
   });
 
-  let lastMove = 0;
   routeSelection.addEventListener('touchmove', (e) => {
-    if (!isDragging && deltaY > dragThreshold) {
-      isDragging = true; // Activer le drag une fois le seuil dépassé
-    } else if (!isDragging) {
-      return;
-    }
-    const now = Date.now();
-    if (now - lastMove < 50) return; // Limite à une fois tous les 50ms
-    lastMove = now;
+    if (!isDragging) return;
+    isDragging = true;
 
     const touchY = e.touches[0].clientY;
     const deltaY = startY - touchY;
@@ -119,63 +71,45 @@ $(document).ready(function () {
     routeSelection.style.height = `${closestHeight}px`;
   });
 
-
-  const findClosestHeight = (currentHeight, direction) => {
-    const heights = [minHeight, mediumHeight, parseInt(maxHeight)]; // Liste des hauteurs possibles
-    if (direction === 'up') {
-      // Filtrer les hauteurs plus grandes que la hauteur actuelle, et prendre la plus petite d'entre elles
-      return heights.find((height) => height > currentHeight) || Math.max(...heights);
-    } else if (direction === 'down') {
-      // Filtrer les hauteurs plus petites que la hauteur actuelle, et prendre la plus grande d'entre elles
-      return heights.reverse().find((height) => height < currentHeight) || Math.min(...heights);
-    }
-
-    // Par défaut, retourne la hauteur la plus proche
-    return heights.reduce((prev, curr) =>
-      Math.abs(curr - currentHeight) < Math.abs(prev - currentHeight) ? curr : prev
-    );
-  };
-
-
-
   // GESTION DU DRAG SUR ORDINATEUR AVEC LA SOURIS
-
 
   // Début du drag à la souris
   routeSelection.addEventListener('mousedown', (e) => {
-    isMouseDragging = true;
     startMouseY = e.clientY;
     startMouseHeight = routeSelection.offsetHeight;
-
-    // Empêche le comportement par défaut (sélection de texte)
-    e.preventDefault();
+    isMouseDragging = false;
   });
 
   // Déplacement à la souris
   document.addEventListener('mousemove', (e) => {
+
     if (!isMouseDragging) return;
 
     const deltaY = startMouseY - e.clientY;
     let newHeight = startMouseHeight + deltaY;
 
-    resetClasses();
-    if (newHeight >= mediumHeight) {
-      routeSelection.classList.add('expanded');
-    }
-    if (newHeight >= maxHeight) {
-      routeSelection.classList.add('full');
-    }
+    if (Math.abs(deltaY) < dragThreshold) return;
 
+    isMouseDragging = true;
+
+    resetClasses();
     routeSelection.style.height = `${newHeight}px`;
   });
 
   // Fin du drag à la souris
   document.addEventListener('mouseup', (e) => {
-    if (!isMouseDragging) return;
     isMouseDragging = false;
 
     const deltaY = startMouseY - e.clientY;
-    const direction = deltaY > 0 ? 'up' : 'down';
+    if (Math.abs(deltaY) < dragThreshold) return;
+
+    direction = '';
+
+    if (deltaY > dragThreshold) {
+      direction = 'up';
+    } else if (deltaY < -dragThreshold) {
+      direction = 'down';
+    }
 
     const currentHeight = routeSelection.offsetHeight;
     const closestHeight = findClosestHeight(currentHeight, direction);
@@ -189,7 +123,24 @@ $(document).ready(function () {
 
     routeSelection.style.height = `${closestHeight}px`;
   });
+
+  const findClosestHeight = (currentHeight, direction) => {
+    const heights = [minHeight, mediumHeight, parseInt(maxHeight)];
+    if (direction === 'up') {
+      return heights.find((height) => height > currentHeight) || Math.max(...heights);
+    } else if (direction === 'down') {
+      return heights.reverse().find((height) => height < currentHeight) || Math.min(...heights);
+    }
+  };
 });
+
+const inputSelection = routeSelection.getElementsByClassName('inputSelection');
+
+inputSelection.addEventListener('click', function () {
+  e.stopPropagation();
+});
+
+
 
 $(document).ready(function () {
   $(".select2").select2({
