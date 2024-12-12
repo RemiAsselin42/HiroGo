@@ -1,12 +1,18 @@
-$(document).ready(function () {
-  const routeSelection = document.getElementById('routeSelection');
-  let isDragging = false; // Indique si un drag est en cours
-  let startY = 0; // Position de départ du doigt
-  let startHeight = 0; // Hauteur initiale de la div
-  const minHeight = 75; // Hauteur minimale de la div
-  const mediumHeight = 310; // Hauteur moyenne de la div
-  const maxHeight = 'calc(100dvh - 138px)'; // Hauteur maximale de la div
+const routeSelection = document.getElementById('routeSelection');
+let isDragging = false; // Indique si un drag est en cours
+let startY = 0; // Position de départ du doigt/souris
+let startHeight = 0; // Hauteur initiale de la div
+const dragThreshold = 10; // Distance minimale pour considérer un drag
+const minHeight = 75; // Hauteur minimale de la div
+const mediumHeight = 310; // Hauteur moyenne de la div
+const headerHeight = document.querySelector('header').offsetHeight;
+const maxHeight = window.innerHeight - headerHeight;
 
+let mouseDragging = false; // Indique si un drag à la souris est en cours
+let startMouseY = 0; // Position initiale de la souris
+let startMouseHeight = 0; // Hauteur initiale de la div
+
+$(document).ready(function () {
   // Fonction pour réinitialiser les classes
   const resetClasses = () => {
     routeSelection.classList.remove('expanded');
@@ -25,7 +31,7 @@ $(document).ready(function () {
       } else if (currentHeight < maxHeight) {
         resetClasses();
         routeSelection.classList.add('full');
-        routeSelection.style.height = maxHeight;
+        routeSelection.style.height = `${maxHeight}px`;
       }
     } else if (direction === 'down') {
       if (currentHeight > mediumHeight) {
@@ -39,42 +45,25 @@ $(document).ready(function () {
     }
   };
 
-  // Gestion du "tap" pour basculer entre 75px et 310px
-  routeSelection.addEventListener('click', () => {
-    if (isDragging) return;
-
-    const currentHeight = routeSelection.offsetHeight;
-
-    if (currentHeight === minHeight) {
-      resetClasses();
-      routeSelection.classList.add('expanded');
-      routeSelection.style.height = `${mediumHeight}px`;
-    } else if (currentHeight === mediumHeight) {
-      resetClasses();
-      routeSelection.style.height = `${minHeight}px`;
-    }
-  });
-
-  document.querySelector('#map').addEventListener('click', function () {
-    resetClasses();
-    routeSelection.style.height = `${minHeight}px`;
-  });
-
-  // Gestion du "drag" pour ajuster la hauteur
+  // Gestion du drag tactile
   routeSelection.addEventListener('touchstart', (e) => {
-    isDragging = true;
+    isDragging = false;
     startY = e.touches[0].clientY;
     startHeight = routeSelection.offsetHeight;
   });
 
   routeSelection.addEventListener('touchmove', (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = Math.abs(startY - touchY);
+
+    if (!isDragging && deltaY > dragThreshold) {
+      isDragging = true;
+    }
+
     if (!isDragging) return;
 
-    const touchY = e.touches[0].clientY;
-    const deltaY = startY - touchY;
-    let newHeight = startHeight + deltaY;
+    let newHeight = startHeight + (startY - touchY);
 
-    // Ajuster les classes selon la hauteur
     resetClasses();
     if (newHeight >= mediumHeight) {
       routeSelection.classList.add('expanded');
@@ -83,19 +72,93 @@ $(document).ready(function () {
       routeSelection.classList.add('full');
     }
 
-    routeSelection.style.height = `${newHeight}px`;
+    routeSelection.style.height = `${Math.max(minHeight, Math.min(newHeight, maxHeight))}px`;
   });
 
   routeSelection.addEventListener('touchend', (e) => {
-    isDragging = false;
+    if (!isDragging) return;
 
     const touchY = e.changedTouches[0].clientY;
     const deltaY = startY - touchY;
     const direction = deltaY > 0 ? 'up' : 'down';
 
-    clipHeight(direction);
+    const currentHeight = routeSelection.offsetHeight;
+    const closestHeight = findClosestHeight(currentHeight, direction);
+
+    resetClasses();
+    if (closestHeight === mediumHeight) {
+      routeSelection.classList.add('expanded');
+    } else if (closestHeight === parseInt(maxHeight)) {
+      routeSelection.classList.add('full');
+    }
+
+    routeSelection.style.height = `${closestHeight}px`;
+    isDragging = false; // Fin du drag tactile
   });
+
+  // Gestion du drag souris
+  routeSelection.addEventListener('mousedown', (e) => {
+    mouseDragging = false;
+    startMouseY = e.clientY;
+    startMouseHeight = routeSelection.offsetHeight;
+    e.preventDefault(); // Empêche la sélection de texte
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    const deltaY = Math.abs(startMouseY - e.clientY);
+
+    if (!mouseDragging && deltaY > dragThreshold) {
+      mouseDragging = true;
+    }
+
+    if (!mouseDragging) return;
+
+    let newHeight = startMouseHeight + (startMouseY - e.clientY);
+
+    resetClasses();
+    if (newHeight >= mediumHeight) {
+      routeSelection.classList.add('expanded');
+    }
+    if (newHeight >= maxHeight) {
+      routeSelection.classList.add('full');
+    }
+
+    routeSelection.style.height = `${Math.max(minHeight, Math.min(newHeight, maxHeight))}px`;
+  });
+
+  document.addEventListener('mouseup', (e) => {
+    if (!mouseDragging) return;
+
+    const deltaY = startMouseY - e.clientY;
+    const direction = deltaY > 0 ? 'up' : 'down';
+
+    const currentHeight = routeSelection.offsetHeight;
+    const closestHeight = findClosestHeight(currentHeight, direction);
+
+    resetClasses();
+    if (closestHeight === mediumHeight) {
+      routeSelection.classList.add('expanded');
+    } else if (closestHeight === parseInt(maxHeight)) {
+      routeSelection.classList.add('full');
+    }
+
+    routeSelection.style.height = `${closestHeight}px`;
+    mouseDragging = false; // Fin du drag souris
+  });
+
+  const findClosestHeight = (currentHeight, direction) => {
+    const heights = [minHeight, mediumHeight, parseInt(maxHeight)];
+    if (direction === 'up') {
+      return heights.find((h) => h > currentHeight) || Math.max(...heights);
+    } else if (direction === 'down') {
+      return heights.reverse().find((h) => h < currentHeight) || Math.min(...heights);
+    }
+    return heights.reduce((prev, curr) =>
+      Math.abs(curr - currentHeight) < Math.abs(prev - currentHeight) ? curr : prev
+    );
+  };
 });
+
 
 $(document).ready(function () {
   $(".select2").select2({
