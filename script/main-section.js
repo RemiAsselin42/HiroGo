@@ -21,14 +21,18 @@ $(document).ready(function () {
   };
 
   document.querySelector('#map').addEventListener('click', function () {
-    if (routeSelection.classList.contains('expanded')) return; // Prevent action if in medium state
     resetClasses();
     routeSelection.style.height = `${minHeight}px`;
   });
 
   // Gestion du "drag" pour ajuster la hauteur
   routeSelection.addEventListener('touchstart', (e) => {
-    if (document.activeElement.tagName === 'INPUT') return; // Prevent drag if an input is focused
+    if (document.activeElement.tagName === 'INPUT' || documentactiveElement.tagName === 'SELECT' || documentactiveElement.tagName === 'OPTION') {
+      routeSelection.classList.add('full');
+      routeSelection.style.height = `${maxHeight}px`;
+      return;
+    } // Prevent drag if an input is focused
+
     startY = e.touches[0].clientY;
     startHeight = routeSelection.offsetHeight;
   });
