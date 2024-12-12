@@ -1,0 +1,57 @@
+{
+  "cities": [
+    { "name": "Saint-Etienne", "latitude": 45.439695, "longitude": 4.387178 },
+    { "name": "Roanne", "latitude": 46.034781, "longitude": 4.070348 },
+    { "name": "Firminy", "latitude": 45.384881, "longitude": 4.290561 },
+    { "name": "Montbrison", "latitude": 45.608489, "longitude": 4.065011 },
+    { "name": "Rive-de-Gier", "latitude": 45.530306, "longitude": 4.616136 },
+    {
+      "name": "Le Chambon-Feugerolles",
+      "latitude": 45.392874,
+      "longitude": 4.333311
+    },
+    { "name": "Saint-Chamond", "latitude": 45.471473, "longitude": 4.513464 },
+    {
+      "name": "Andrezieux-Boutheon",
+      "latitude": 45.532332,
+      "longitude": 4.262763
+    },
+    { "name": "Sorbiers", "latitude": 45.466512, "longitude": 4.442903 },
+    { "name": "La Ricamarie", "latitude": 45.404875, "longitude": 4.378756 },
+    { "name": "Veauche", "latitude": 45.545355, "longitude": 4.287264 },
+    { "name": "Unieux", "latitude": 45.389808, "longitude": 4.273661 },
+    { "name": "Villars", "latitude": 45.462973, "longitude": 4.351889 },
+    { "name": "Feurs", "latitude": 45.741882, "longitude": 4.228193 },
+    { "name": "L'Horme", "latitude": 45.484488, "longitude": 4.550925 },
+    {
+      "name": "Saint-Just-Saint-Rambert",
+      "latitude": 45.490444,
+      "longitude": 4.246336
+    },
+    { "name": "Boën-sur-Lignon", "latitude": 45.744442, "longitude": 4.005487 },
+    { "name": "Saint-Galmier", "latitude": 45.607887, "longitude": 4.295459 },
+    { "name": "Bonson", "latitude": 45.533586, "longitude": 4.236019 },
+    {
+      "name": "Chazelles-sur-Lyon",
+      "latitude": 45.637408,
+      "longitude": 4.363432
+    },
+    {
+      "name": "Saint-Bonnet-le-Château",
+      "latitude": 45.479652,
+      "longitude": 4.073033
+    },
+    { "name": "La Talaudière", "latitude": 45.479546, "longitude": 4.428788 },
+    { "name": "Saint-Héand", "latitude": 45.504952, "longitude": 4.343665 },
+    { "name": "Pélussin", "latitude": 45.437695, "longitude": 4.686565 },
+    { "name": "Sury-le-Comtal", "latitude": 45.540182, "longitude": 4.200222 },
+    {
+      "name": "Saint-Priest-en-Jarez",
+      "latitude": 45.473132,
+      "longitude": 4.364587
+    },
+    { "name": "Le Coteau", "latitude": 46.021793, "longitude": 4.088301 },
+    { "name": "Charlieu", "latitude": 46.157224, "longitude": 4.174476 },
+    { "name": "Riorges", "latitude": 46.038656, "longitude": 4.050146 }
+  ]
+}
