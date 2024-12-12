@@ -132,7 +132,7 @@ $(document).ready(function () {
     if (direction === 'up') {
       return heights.find((height) => height > currentHeight) || Math.max(...heights);
     } else if (direction === 'down') {
-      return heights.reverse().find((height) => height < currentHeight) || Math.min(...heights);
+      return mediumHeight;
     }
   };
 });
