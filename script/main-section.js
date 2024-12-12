@@ -27,36 +27,39 @@ $(document).ready(function () {
 
   // Gestion du "drag" pour ajuster la hauteur
   routeSelection.addEventListener('touchstart', (e) => {
-    startY = e.touches[0].clientY;
-    startHeight = routeSelection.offsetHeight;
+    startMouseY = e.clientY;
+    startMouseHeight = routeSelection.offsetHeight;
+    isDragging = false;
   });
 
   routeSelection.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    isDragging = true;
 
-    const touchY = e.touches[0].clientY;
-    const deltaY = startY - touchY;
-    let newHeight = startHeight + deltaY;
+    if (!isMouseDragging) return;
 
-    // Ajuster les classes selon la hauteur
+    const deltaY = startMouseY - e.clientY;
+    let newHeight = startMouseHeight + deltaY;
+
+    if (Math.abs(deltaY) < dragThreshold) return;
+
+    isMouseDragging = true;
+
     resetClasses();
-    if (newHeight >= mediumHeight) {
-      routeSelection.classList.add('expanded');
-    }
-    if (newHeight >= maxHeight) {
-      routeSelection.classList.add('full');
-    }
-
     routeSelection.style.height = `${newHeight}px`;
   });
 
   routeSelection.addEventListener('touchend', (e) => {
-    isDragging = false;
+    isMouseDragging = false;
 
-    const touchY = e.changedTouches[0].clientY;
-    const deltaY = startY - touchY;
-    const direction = deltaY > 0 ? 'up' : 'down';
+    const deltaY = startMouseY - e.clientY;
+    if (Math.abs(deltaY) < dragThreshold) return;
+
+    direction = '';
+
+    if (deltaY > dragThreshold) {
+      direction = 'up';
+    } else if (deltaY < -dragThreshold) {
+      direction = 'down';
+    }
 
     const currentHeight = routeSelection.offsetHeight;
     const closestHeight = findClosestHeight(currentHeight, direction);
