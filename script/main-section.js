@@ -27,13 +27,13 @@ $(document).ready(function () {
 
   // Gestion du "drag" pour ajuster la hauteur
   routeSelection.addEventListener('touchstart', (e) => {
-    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.getElementById("endautocomplete-list")) return; // Prevent drag if an input is focused
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.activeElement.id === 'endautocomplete-list') return; // Prevent drag if an input is focused
     startY = e.touches[0].clientY;
     startHeight = routeSelection.offsetHeight;
   });
 
   routeSelection.addEventListener('touchmove', (e) => {
-    if (!isDragging || document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.getElementById("endautocomplete-list")) return; // Prevent drag if an input is focused
+    if (!isDragging || document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.activeElement.id === 'endautocomplete-list') return; // Prevent drag if an input is focused
     isDragging = true;
 
     const touchY = e.touches[0].clientY;
@@ -53,7 +53,7 @@ $(document).ready(function () {
   });
 
   routeSelection.addEventListener('touchend', (e) => {
-    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.getElementById("endautocomplete-list")) return; // Prevent drag if an input is focused
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.activeElement.id === 'endautocomplete-list') return; // Prevent drag if an input is focused
     isDragging = false;
 
     const touchY = e.changedTouches[0].clientY;
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
   // Début du drag à la souris
   routeSelection.addEventListener('mousedown', (e) => {
-    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.getElementById("endautocomplete-list")) return; // Prevent drag if an input is focused
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.activeElement.id === 'endautocomplete-list') return; // Prevent drag if an input is focused
     startMouseY = e.clientY;
     startMouseHeight = routeSelection.offsetHeight;
     isMouseDragging = false;
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
   // Déplacement à la souris
   document.addEventListener('mousemove', (e) => {
-    if (!isMouseDragging || document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.getElementById("endautocomplete-list")) return; // Prevent drag if an input is focused
+    if (!isMouseDragging || document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.activeElement.id === 'endautocomplete-list') return; // Prevent drag if an input is focused
 
     const deltaY = startMouseY - e.clientY;
     let newHeight = startMouseHeight + deltaY;
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
   // Fin du drag à la souris
   document.addEventListener('mouseup', (e) => {
-    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.getElementById("endautocomplete-list")) return; // Prevent drag if an input is focused
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'OPTION' || document.activeElement.id === 'endautocomplete-list') return; // Prevent drag if an input is focused
     isMouseDragging = false;
 
     const deltaY = startMouseY - e.clientY;
