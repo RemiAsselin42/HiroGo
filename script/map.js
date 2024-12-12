@@ -17,7 +17,7 @@ let cities = {};
 let markers = {};
 
 // Charger les villes depuis le fichier JSON
-fetch('../json/villes.json')
+fetch('./../json/villes.json')
     .then(response => response.json())
     .then(data => {
         // Stocker les villes dans un objet pour un accès rapide
