@@ -253,7 +253,7 @@ function showRoute() {
             if (minutes < 10) minutes = '0' + minutes;
             document.getElementById("duration-info").textContent = `${hours}h${minutes}`;
 
-            document.getElementById("co2-info").textContent = `Soit ${(distance * 0.02).toFixed(2)}kg de CO2 économisés 🌿`;
+            document.getElementById("co2-info").textContent = `Soit ${(distance * 0.2).toFixed(2)}kg de CO2 économisés 🌿`;
         })
         .catch(error => console.error('Erreur lors de la récupération de l\'itinéraire:', error));
 }
